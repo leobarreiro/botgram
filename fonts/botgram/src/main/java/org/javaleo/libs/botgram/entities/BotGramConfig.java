@@ -11,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.servlet.jsp.jstl.core.Config;
 import javax.validation.constraints.NotNull;
 
+import org.javaleo.libs.botgram.enums.ConfigKey;
 import org.javaleo.libs.botgram.enums.ValueType;
 
 @Entity
@@ -23,7 +25,7 @@ public class BotGramConfig implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private String key;
+	private ConfigKey key;
 	private String value;
 	private ValueType type;
 
@@ -39,12 +41,13 @@ public class BotGramConfig implements Serializable {
 	}
 
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	@Column(name = "config_key")
-	public String getKey() {
+	public ConfigKey getKey() {
 		return key;
 	}
 
-	public void setKey(String key) {
+	public void setKey(ConfigKey key) {
 		this.key = key;
 	}
 
