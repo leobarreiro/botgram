@@ -8,18 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
+	@SerializedName("id")
 	private Integer id;
+	
+	@SerializedName("first_name")
 	private String firstName;
+	
+	@SerializedName("last_name")
 	private String lastName;
+	
+	@SerializedName("username")
 	private String username;
 
-	@Id
-	@GeneratedValue
-	@Column(name="user_id")
 	public Integer getId() {
 		return id;
 	}
