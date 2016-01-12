@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpMessage;
@@ -28,11 +29,14 @@ public class BotGramService implements IBotGramService {
 	public static final String CONTENT_TYPE = "Content-Type";
 	public static final String JSON_APPLICATION = "application/json; charset=UTF-8";
 
+	@Inject
+	private IBotGramConfig botGramConfig;
+
 	private static final Logger LOG = LoggerFactory
 			.getLogger(BotGramService.class);
 
 	public User getMe() {
-		String content = executeGetRequest("..getMe");
+		String content = executeGetRequest(botGramConfig.getMeUrl());
 		return null;
 	}
 
@@ -56,8 +60,6 @@ public class BotGramService implements IBotGramService {
 			HttpGet httpGet = new HttpGet(url);
 			prepareAuthorization(httpGet);
 			HttpResponse response = httpClient.execute(httpGet);
-			// response.getStatusLine().getStatusCode()
-			// response.getStatusLine().getReasonPhrase()
 			BufferedReader buffreader = new BufferedReader(
 					new InputStreamReader(response.getEntity().getContent()));
 			String input = "";
@@ -72,13 +74,7 @@ public class BotGramService implements IBotGramService {
 	}
 
 	private void prepareAuthorization(HttpMessage httpMessage) {
-		final StringBuilder sb = new StringBuilder();
-		sb.append("mytoken");
-		sb.append(":");
-		String passwd = new String(Base64.decodeBase64("mypassword".getBytes()));
-		sb.append(passwd);
-		httpMessage.addHeader("Authorization",
-				"Basic " + Base64.encodeBase64String(sb.toString().getBytes()));
+		httpMessage.addHeader(ACCEPT, JSON_APPLICATION);
 	}
 
 }

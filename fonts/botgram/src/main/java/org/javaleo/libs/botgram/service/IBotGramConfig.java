@@ -9,6 +9,8 @@ public interface IBotGramConfig extends Serializable {
 
 	void setToken(final String token);
 	
-	String getToken();
+	String getMeUrl();
+	
+	String getUpdatesUrl();
 	
 }
