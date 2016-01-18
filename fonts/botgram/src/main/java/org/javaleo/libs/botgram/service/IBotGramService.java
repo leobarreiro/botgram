@@ -3,22 +3,25 @@ package org.javaleo.libs.botgram.service;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.Local;
-
+import org.javaleo.libs.botgram.exceptions.BotGramException;
 import org.javaleo.libs.botgram.model.File;
 import org.javaleo.libs.botgram.model.Message;
 import org.javaleo.libs.botgram.model.Update;
-import org.javaleo.libs.botgram.model.User;
+import org.javaleo.libs.botgram.request.SendMessageRequest;
+import org.javaleo.libs.botgram.response.GetMeResponse;
+import org.javaleo.libs.botgram.response.GetUpdatesResponse;
+import org.javaleo.libs.botgram.response.SendMessageResponse;
 
-@Local
 public interface IBotGramService extends Serializable {
 
-	User getMe();
-
-	List<Update> getUpdates(Integer offset, Integer limit);
-
-	Message sendMessage(Message message);
+	void setConfiguration(BotGramConfig config);
 	
-	File getFile(String fileId);
+	GetMeResponse getMe() throws BotGramException;
+
+	GetUpdatesResponse getUpdates(Integer offset, Integer limit) throws BotGramException;
+
+	SendMessageResponse sendMessage(SendMessageRequest request) throws BotGramException;
+	
+	File getFile(String fileId) throws BotGramException;
 
 }

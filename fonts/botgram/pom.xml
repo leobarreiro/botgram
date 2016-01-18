@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.javaleo.libs</groupId>
 	<artifactId>botgram</artifactId>
-	<packaging>ejb</packaging>
+	<packaging>jar</packaging>
 	<name>BotGram Utils</name>
 	<version>0.0.1</version>
 	<url>http://botgram.javaleo.org</url>
@@ -16,14 +16,9 @@
 		</license>
 	</licenses>
 	<properties>
+		<log4j.properties>log4j.properties</log4j.properties>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
-			<scope>provided</scope>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -47,11 +42,6 @@
 			<version>2.5</version>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.12</version>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
@@ -62,31 +52,59 @@
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
-				<artifactId>maven-ejb-plugin</artifactId>
-				<version>2.3</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
 				<configuration>
-					<ejbVersion>3.1</ejbVersion>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+					<archive>
+						<index>true</index>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass></mainClass>
+							<packageName>org.javaleo.libs.botgram</packageName>
+						</manifest>
+						<manifestEntries>
+							<mode>development</mode>
+							<url>http://botgram.javaleo.org</url>
+							<key>value</key>
+						</manifestEntries>
+					</archive>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+				<configuration>
+					<minimizeJar>false</minimizeJar>
+					<filters>
+						<filter>
+							<artifact>*:*</artifact>
+							<excludes>
+							</excludes>
+						</filter>
+					</filters>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>2.16</version>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

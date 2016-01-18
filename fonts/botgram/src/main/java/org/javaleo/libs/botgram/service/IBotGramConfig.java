@@ -2,9 +2,6 @@ package org.javaleo.libs.botgram.service;
 
 import java.io.Serializable;
 
-import javax.ejb.Local;
-
-@Local
 public interface IBotGramConfig extends Serializable {
 
 	void setToken(final String token);
@@ -12,5 +9,7 @@ public interface IBotGramConfig extends Serializable {
 	String getMeUrl();
 	
 	String getUpdatesUrl();
+
+	String getSendMessageUrl();
 	
 }

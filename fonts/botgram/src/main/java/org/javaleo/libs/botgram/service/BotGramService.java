@@ -1,26 +1,27 @@
 package org.javaleo.libs.botgram.service;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-
-import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpMessage;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.javaleo.libs.botgram.exceptions.BotGramException;
 import org.javaleo.libs.botgram.model.File;
-import org.javaleo.libs.botgram.model.Message;
-import org.javaleo.libs.botgram.model.Update;
-import org.javaleo.libs.botgram.model.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.javaleo.libs.botgram.request.SendMessageRequest;
+import org.javaleo.libs.botgram.response.GetMeResponse;
+import org.javaleo.libs.botgram.response.GetUpdatesResponse;
+import org.javaleo.libs.botgram.response.SendMessageResponse;
 
-@Stateless
+import com.google.gson.Gson;
+
 public class BotGramService implements IBotGramService {
 
 	private static final long serialVersionUID = 1L;
@@ -29,52 +30,94 @@ public class BotGramService implements IBotGramService {
 	public static final String CONTENT_TYPE = "Content-Type";
 	public static final String JSON_APPLICATION = "application/json; charset=UTF-8";
 
-	@Inject
 	private IBotGramConfig botGramConfig;
 
-	private static final Logger LOG = LoggerFactory
-			.getLogger(BotGramService.class);
+	public void setConfiguration(BotGramConfig config) {
+		this.botGramConfig = config;
+	}
 
-	public User getMe() {
-		String content = executeGetRequest(botGramConfig.getMeUrl());
+	public GetMeResponse getMe() throws BotGramException {
+		try {
+			String content = executeGetRequest(botGramConfig.getMeUrl());
+			Gson gson = new Gson();
+			GetMeResponse response = gson.fromJson(content, GetMeResponse.class);
+			return response;
+		} catch (ClientProtocolException e) {
+			throw new BotGramException(e.getMessage(), e);
+		} catch (IOException e) {
+			throw new BotGramException(e.getMessage(), e);
+		}
+	}
+
+	public GetUpdatesResponse getUpdates(Integer offset, Integer limit) throws BotGramException {
+		String content;
+		try {
+			content = executeGetRequest(botGramConfig.getUpdatesUrl());
+			Gson gson = new Gson();
+			GetUpdatesResponse response = gson.fromJson(content, GetUpdatesResponse.class);
+			return response;
+		} catch (ClientProtocolException e) {
+			throw new BotGramException(e.getMessage());
+		} catch (IOException e) {
+			throw new BotGramException(e.getMessage());
+		}
+	}
+
+	public SendMessageResponse sendMessage(SendMessageRequest request) throws BotGramException {
+		try {
+			Gson gson = new Gson();
+			StringEntity stringEntity = new StringEntity(gson.toJson(request).toString());
+			String content = executePostRequest(botGramConfig.getSendMessageUrl(), stringEntity);
+			SendMessageResponse response = gson.fromJson(content, SendMessageResponse.class);
+			return response;
+		} catch (UnsupportedEncodingException e) {
+			throw new BotGramException(e.getMessage(), e);
+		} catch (ClientProtocolException e) {
+			throw new BotGramException(e.getMessage(), e);
+		} catch (IOException e) {
+			throw new BotGramException(e.getMessage(), e);
+		}
+	}
+
+	public File getFile(String fileId) throws BotGramException {
 		return null;
 	}
 
-	public List<Update> getUpdates(Integer offset, Integer limit) {
-		return null;
-	}
-
-	public Message sendMessage(Message message) {
-		return null;
-	}
-
-	public File getFile(String fileId) {
-		return null;
-	}
-
-	private String executeGetRequest(String url) {
+	private String executeGetRequest(String url) throws ClientProtocolException, IOException {
 		StringBuffer content = null;
 		CloseableHttpClient httpClient = HttpClients.createDefault();
-		try {
-			content = new StringBuffer("");
-			HttpGet httpGet = new HttpGet(url);
-			prepareAuthorization(httpGet);
-			HttpResponse response = httpClient.execute(httpGet);
-			BufferedReader buffreader = new BufferedReader(
-					new InputStreamReader(response.getEntity().getContent()));
-			String input = "";
-			while ((input = buffreader.readLine()) != null) {
-				content.append(input);
-			}
-			httpClient.close();
-		} catch (Exception e) {
-			LOG.error(e.getMessage());
+		content = new StringBuffer("");
+		HttpGet httpGet = new HttpGet(url);
+		prepareAuthorization(httpGet);
+		HttpResponse response = httpClient.execute(httpGet);
+		BufferedReader buffreader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+		String input = "";
+		while ((input = buffreader.readLine()) != null) {
+			content.append(input);
 		}
+		httpClient.close();
+		return content.toString();
+	}
+
+	private String executePostRequest(String url, StringEntity stringEntity) throws ClientProtocolException, IOException {
+		StringBuffer content = new StringBuffer("");
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		HttpPost httpPost = new HttpPost(url);
+		prepareAuthorization(httpPost);
+		httpPost.setEntity(stringEntity);
+		HttpResponse response = httpClient.execute(httpPost);
+		BufferedReader buffReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+		String input = "";
+		while ((input = buffReader.readLine()) != null) {
+			content.append(input);
+		}
+		httpClient.close();
 		return content.toString();
 	}
 
 	private void prepareAuthorization(HttpMessage httpMessage) {
 		httpMessage.addHeader(ACCEPT, JSON_APPLICATION);
+		httpMessage.addHeader(CONTENT_TYPE, JSON_APPLICATION);
 	}
 
 }

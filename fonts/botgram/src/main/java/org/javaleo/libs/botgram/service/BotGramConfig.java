@@ -2,23 +2,17 @@ package org.javaleo.libs.botgram.service;
 
 import java.util.Properties;
 
-import javax.ejb.Singleton;
-import javax.inject.Inject;
-
 import org.apache.commons.lang3.StringUtils;
-import org.javaleo.libs.botgram.annotations.BotGrammer;
+import org.javaleo.libs.botgram.producer.BotGramProducer;
 
-@Singleton
 public class BotGramConfig implements IBotGramConfig {
 
 	private static final long serialVersionUID = 1L;
 
 	private static final String GETME = "getMe";
 	private static final String GETUPDATES = "getUpdates";
-	private static final String SLASH = "/";
+	private static final String SENDMESSAGE = "sendMessage";
 
-	@Inject
-	@BotGrammer
 	private Properties properties;
 
 	private String token;
@@ -39,10 +33,16 @@ public class BotGramConfig implements IBotGramConfig {
 		return str.toString();
 	}
 
+	public String getSendMessageUrl() {
+		StringBuilder str = getApiUrl();
+		str.append(SENDMESSAGE);
+		return str.toString();
+	}
+
 	private StringBuilder getApiUrl() {
+		properties = BotGramProducer.loadProperties();
 		String url = properties.getProperty("telegram.url");
-		StringBuilder str = new StringBuilder(StringUtils.replace(url,
-				"<token>", this.token));
+		StringBuilder str = new StringBuilder(StringUtils.replace(url, "<token>", this.token));
 		return str;
 	}
 
