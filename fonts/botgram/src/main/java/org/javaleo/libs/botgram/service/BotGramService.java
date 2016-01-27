@@ -15,9 +15,11 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.javaleo.libs.botgram.exceptions.BotGramException;
 import org.javaleo.libs.botgram.model.File;
+import org.javaleo.libs.botgram.request.SendDocumentRequest;
 import org.javaleo.libs.botgram.request.SendMessageRequest;
 import org.javaleo.libs.botgram.response.GetMeResponse;
 import org.javaleo.libs.botgram.response.GetUpdatesResponse;
+import org.javaleo.libs.botgram.response.SendDocumentResponse;
 import org.javaleo.libs.botgram.response.SendMessageResponse;
 
 import com.google.gson.Gson;
@@ -118,6 +120,11 @@ public class BotGramService implements IBotGramService {
 	private void prepareAuthorization(HttpMessage httpMessage) {
 		httpMessage.addHeader(ACCEPT, JSON_APPLICATION);
 		httpMessage.addHeader(CONTENT_TYPE, JSON_APPLICATION);
+	}
+
+	public SendDocumentResponse sendDocument(SendDocumentRequest request) throws BotGramException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
