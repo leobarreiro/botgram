@@ -34,6 +34,15 @@ public class BotGramService implements IBotGramService {
 
 	private IBotGramConfig botGramConfig;
 
+	public BotGramService() {
+		super();
+	}
+
+	public BotGramService(IBotGramConfig botGramConfig) {
+		super();
+		this.botGramConfig = botGramConfig;
+	}
+
 	public void setConfiguration(BotGramConfig config) {
 		this.botGramConfig = config;
 	}

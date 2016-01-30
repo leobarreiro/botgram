@@ -1,11 +1,8 @@
 package org.javaleo.libs.botgram.response;
 
-import java.io.Serializable;
 
-public class SendDocumentResponse implements Serializable {
+public class SendDocumentResponse extends BotGramResponse {
 
 	private static final long serialVersionUID = 1L;
-	
-	
 
 }
