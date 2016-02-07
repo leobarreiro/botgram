@@ -2,15 +2,18 @@ package org.javaleo.libs.botgram.model;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Update implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Expose
 	@SerializedName("update_id")
 	private Integer id;
-	
+
+	@Expose
 	@SerializedName("message")
 	private Message message;
 

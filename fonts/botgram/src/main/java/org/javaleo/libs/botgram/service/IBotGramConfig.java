@@ -11,5 +11,7 @@ public interface IBotGramConfig extends Serializable {
 	String getUpdatesUrl();
 
 	String getSendMessageUrl();
+
+	String getSendDocumentUrl();
 	
 }

@@ -2,15 +2,18 @@ package org.javaleo.libs.botgram.model;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Location implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Expose
 	@SerializedName("longitude")
 	private Float longitude;
-	
+
+	@Expose
 	@SerializedName("latitude")
 	private Float latitude;
 

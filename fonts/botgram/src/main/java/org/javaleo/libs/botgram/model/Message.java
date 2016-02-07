@@ -2,39 +2,54 @@ package org.javaleo.libs.botgram.model;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Message implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Expose
 	@SerializedName("message_id")
 	private Integer id;
-	
+
+	@Expose
 	@SerializedName("from")
 	private User from;
-	
+
+	@Expose
 	@SerializedName("date")
 	private Integer date;
-	
+
+	@Expose
 	@SerializedName("chat")
 	private Chat chat;
-	
+
+	@Expose
 	@SerializedName("forward_from")
 	private User forward;
-	
+
+	@Expose
 	@SerializedName("forward_date")
 	private Integer forwardDate;
-	
+
+	@Expose
 	@SerializedName("reply_to_message")
 	private Message replyMessage;
-	
+
+	@Expose
 	@SerializedName("text")
 	private String text;
-	
+
+	@Expose
+	@SerializedName("document")
+	private Document document;
+
+	@Expose
 	@SerializedName("contact")
 	private Contact contact;
-	
+
+	@Expose
 	@SerializedName("location")
 	private Location location;
 
@@ -100,6 +115,14 @@ public class Message implements Serializable {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public Document getDocument() {
+		return document;
+	}
+
+	public void setDocument(Document document) {
+		this.document = document;
 	}
 
 	public Contact getContact() {

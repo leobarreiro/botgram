@@ -5,48 +5,48 @@ import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PhotoSize implements Serializable {
+public class Document implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Expose
 	@SerializedName("file_id")
-	private Integer id;
+	private String id;
 
 	@Expose
-	@SerializedName("width")
-	private Integer width;
+	@SerializedName("file_name")
+	private String name;
 
 	@Expose
-	@SerializedName("height")
-	private Integer height;
+	@SerializedName("mime_type")
+	private String mimeType;
 
 	@Expose
 	@SerializedName("file_size")
 	private Integer size;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public Integer getWidth() {
-		return width;
+	public String getName() {
+		return name;
 	}
 
-	public void setWidth(Integer width) {
-		this.width = width;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Integer getHeight() {
-		return height;
+	public String getMimeType() {
+		return mimeType;
 	}
 
-	public void setHeight(Integer height) {
-		this.height = height;
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
 	}
 
 	public Integer getSize() {

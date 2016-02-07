@@ -12,6 +12,7 @@ public class BotGramConfig implements IBotGramConfig {
 	private static final String GETME = "getMe";
 	private static final String GETUPDATES = "getUpdates";
 	private static final String SENDMESSAGE = "sendMessage";
+	private static final String SENDDOCUMENT = "sendDocument";
 
 	private Properties properties;
 
@@ -39,10 +40,17 @@ public class BotGramConfig implements IBotGramConfig {
 		return str.toString();
 	}
 
+	public String getSendDocumentUrl() {
+		StringBuilder str = getApiUrl();
+		str.append(SENDDOCUMENT);
+		return str.toString();
+	}
+
 	private StringBuilder getApiUrl() {
 		properties = BotGramProducer.loadProperties();
 		String url = properties.getProperty("telegram.url");
-		StringBuilder str = new StringBuilder(StringUtils.replace(url, "<token>", this.token));
+		StringBuilder str = new StringBuilder(StringUtils.replace(url,
+				"<token>", this.token));
 		return str;
 	}
 

@@ -1,8 +1,8 @@
 package org.javaleo.libs.botgram.response;
 
-import java.beans.Transient;
 import java.io.Serializable;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public abstract class BotGramResponse implements Serializable {
@@ -10,10 +10,17 @@ public abstract class BotGramResponse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int httpResponseCode;
+	private String protocol;
+	private String bufferContent;
+
+	@Expose
+	@SerializedName("ok")
 	private Boolean ok;
+
+	@Expose
+	@SerializedName("description")
 	private String description;
 
-	@Transient
 	public int getHttpResponseCode() {
 		return httpResponseCode;
 	}
@@ -22,7 +29,22 @@ public abstract class BotGramResponse implements Serializable {
 		this.httpResponseCode = httpResponseCode;
 	}
 
-	@SerializedName("ok")
+	public String getProtocol() {
+		return protocol;
+	}
+
+	public void setProtocol(String protocol) {
+		this.protocol = protocol;
+	}
+
+	public String getBufferContent() {
+		return bufferContent;
+	}
+
+	public void setBufferContent(String bufferContent) {
+		this.bufferContent = bufferContent;
+	}
+
 	public Boolean getOk() {
 		return ok;
 	}
@@ -31,7 +53,6 @@ public abstract class BotGramResponse implements Serializable {
 		this.ok = ok;
 	}
 
-	@SerializedName("description")
 	public String getDescription() {
 		return description;
 	}
