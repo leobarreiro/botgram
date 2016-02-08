@@ -38,7 +38,7 @@ public class BotGramService implements IBotGramService {
 	public static final String ACCEPT = "Accept";
 	public static final String CONTENT_TYPE = "Content-Type";
 	public static final String JSON_APPLICATION = "application/json; charset=UTF-8";
-	private static final boolean DEBUG = true;
+	public static final boolean DEBUG = true;
 
 	private IBotGramConfig botGramConfig;
 
