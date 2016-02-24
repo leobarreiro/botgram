@@ -30,6 +30,7 @@ import org.javaleo.libs.botgram.response.SendMessageResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 
 public class BotGramService implements IBotGramService {
 
@@ -65,7 +66,7 @@ public class BotGramService implements IBotGramService {
 			pojo.setHttpResponseCode(response.getCode());
 			pojo.setProtocol(response.getProtocol());
 			return pojo;
-		} catch (IOException e) {
+		} catch (JsonSyntaxException | IOException e) {
 			throw new BotGramException(e.getMessage(), e);
 		}
 	}
@@ -79,7 +80,7 @@ public class BotGramService implements IBotGramService {
 			pojo.setHttpResponseCode(response.getCode());
 			pojo.setProtocol(response.getProtocol());
 			return pojo;
-		} catch (IOException e) {
+		} catch (JsonSyntaxException | IOException e) {
 			throw new BotGramException(e.getMessage());
 		}
 	}
@@ -94,7 +95,7 @@ public class BotGramService implements IBotGramService {
 			pojo.setHttpResponseCode(response.getCode());
 			pojo.setProtocol(response.getProtocol());
 			return pojo;
-		} catch (IOException e) {
+		} catch (JsonSyntaxException | IOException e) {
 			throw new BotGramException(e.getMessage(), e);
 		}
 	}
@@ -133,7 +134,7 @@ public class BotGramService implements IBotGramService {
 			}
 			httpClient.close();
 			return pojo;
-		} catch (IOException e) {
+		} catch (JsonSyntaxException | IOException e) {
 			throw new BotGramException(e.getMessage(), e);
 		}
 	}
