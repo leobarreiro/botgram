@@ -165,14 +165,14 @@ public class BotGramService implements IBotGramService {
 			content.append(input);
 		}
 		botGramResponse.setContent(content.toString());
-		if (DEBUG) {
-			System.out.println("-  -  -  -  -  -  -  -  -  -  -");
-			System.out.println(url);
-			System.out.println(botGramResponse.getContent());
-			System.out.println(response.getStatusLine().toString());
-			System.out.println(botGramResponse.getProtocol());
-			System.out.println(botGramResponse.getCode());
-		}
+		// if (DEBUG) {
+		// System.out.println("-  -  -  -  -  -  -  -  -  -  -");
+		// System.out.println(url);
+		// System.out.println(botGramResponse.getContent());
+		// System.out.println(response.getStatusLine().toString());
+		// System.out.println(botGramResponse.getProtocol());
+		// System.out.println(botGramResponse.getCode());
+		// }
 		httpClient.close();
 		return botGramResponse;
 	}
@@ -193,14 +193,14 @@ public class BotGramService implements IBotGramService {
 			content.append(input);
 		}
 		botGramResponse.setContent(content.toString());
-		if (DEBUG) {
-			System.out.println("-  -  -  -  -  -  -  -  -  -  -");
-			System.out.println(url);
-			System.out.println(botGramResponse.getContent());
-			System.out.println(response.getStatusLine().toString());
-			System.out.println(botGramResponse.getProtocol());
-			System.out.println(botGramResponse.getCode());
-		}
+		// if (DEBUG) {
+		// System.out.println("-  -  -  -  -  -  -  -  -  -  -");
+		// System.out.println(url);
+		// System.out.println(botGramResponse.getContent());
+		// System.out.println(response.getStatusLine().toString());
+		// System.out.println(botGramResponse.getProtocol());
+		// System.out.println(botGramResponse.getCode());
+		// }
 		httpClient.close();
 		return botGramResponse;
 	}
