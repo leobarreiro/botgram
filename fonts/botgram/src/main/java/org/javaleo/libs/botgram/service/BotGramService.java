@@ -74,7 +74,9 @@ public class BotGramService implements IBotGramService {
 	@Override
 	public GetUpdatesResponse getUpdates(Integer offset, Integer limit) throws BotGramException {
 		try {
-			BotGramHttpResponse response = executeGetRequest(botGramConfig.getUpdatesUrl());
+			offset = (offset == null) ? 0 : offset;
+			limit = (limit == null) ? 0 : limit;
+			BotGramHttpResponse response = executeGetRequest(botGramConfig.getUpdatesUrl(offset, limit));
 			Gson gson = createGson();
 			GetUpdatesResponse pojo = gson.fromJson(response.getContent(), GetUpdatesResponse.class);
 			pojo.setHttpResponseCode(response.getCode());

@@ -18,28 +18,36 @@ public class BotGramConfig implements IBotGramConfig {
 
 	private String token;
 
+	@Override
 	public void setToken(String token) {
 		this.token = token;
 	}
 
+	@Override
 	public String getMeUrl() {
 		StringBuilder str = getApiUrl();
 		str.append(GETME);
 		return str.toString();
 	}
 
-	public String getUpdatesUrl() {
+	public String getUpdatesUrl(int offset, int limit) {
 		StringBuilder str = getApiUrl();
 		str.append(GETUPDATES);
+		str.append("?offset=");
+		str.append(offset);
+		str.append("&limit=");
+		str.append(limit);
 		return str.toString();
 	}
 
+	@Override
 	public String getSendMessageUrl() {
 		StringBuilder str = getApiUrl();
 		str.append(SENDMESSAGE);
 		return str.toString();
 	}
 
+	@Override
 	public String getSendDocumentUrl() {
 		StringBuilder str = getApiUrl();
 		str.append(SENDDOCUMENT);
