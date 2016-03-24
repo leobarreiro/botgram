@@ -1,6 +1,7 @@
 package org.javaleo.libs.botgram.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.javaleo.libs.botgram.enums.ChatType;
 
@@ -14,6 +15,7 @@ public class Chat implements Serializable {
 	@Expose
 	@SerializedName("id")
 	private Integer id;
+
 	private ChatType type;
 
 	@Expose
@@ -31,6 +33,8 @@ public class Chat implements Serializable {
 	@Expose
 	@SerializedName("last_name")
 	private String lastName;
+
+	private List<Message> messages;
 
 	public Integer getId() {
 		return id;
@@ -78,6 +82,14 @@ public class Chat implements Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 
 }
