@@ -2,6 +2,6 @@ package org.javaleo.libs.botgram.enums;
 
 public enum ParseMode {
 
-	MARKDOWN, PLAINTEXT;
+	MARKDOWN, HTML, PLAINTEXT;
 	
 }

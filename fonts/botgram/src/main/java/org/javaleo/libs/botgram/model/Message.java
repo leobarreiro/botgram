@@ -76,7 +76,7 @@ public class Message implements Serializable {
 	public void setDate(Integer date) {
 		this.date = date;
 	}
-
+	
 	public Chat getChat() {
 		return chat;
 	}
