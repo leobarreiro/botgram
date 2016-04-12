@@ -66,4 +66,12 @@ public class SendMessageRequest implements Serializable {
 		this.disableWebPagePreview = disableWebPagePreview;
 	}
 
+	public ReplyKeyboardMarkup getReplyKeyboardMarkup() {
+		return replyKeyboardMarkup;
+	}
+
+	public void setReplyKeyboardMarkup(ReplyKeyboardMarkup replyKeyboardMarkup) {
+		this.replyKeyboardMarkup = replyKeyboardMarkup;
+	}
+
 }
