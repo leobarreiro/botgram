@@ -3,6 +3,7 @@ package org.javaleo.libs.botgram.request;
 import java.io.Serializable;
 
 import org.javaleo.libs.botgram.enums.ParseMode;
+import org.javaleo.libs.botgram.model.ReplyKeyboardMarkup;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -26,6 +27,10 @@ public class SendMessageRequest implements Serializable {
 	@Expose
 	@SerializedName("disable_web_page_preview")
 	private Boolean disableWebPagePreview;
+
+	@Expose
+	@SerializedName("reply_markup")
+	private ReplyKeyboardMarkup replyKeyboardMarkup;
 
 	// TODO : explore reply_markup in this object. View Telegram API docs.
 
