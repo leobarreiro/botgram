@@ -1,6 +1,7 @@
 package org.javaleo.libs.botgram.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,7 +12,7 @@ public class ReplyKeyboardMarkup implements Serializable {
 
 	@Expose
 	@SerializedName("keyboard")
-	private String keyboard;
+	private List<List<String>> keyboard;
 
 	@Expose
 	@SerializedName("resize_keyboard")
@@ -25,11 +26,11 @@ public class ReplyKeyboardMarkup implements Serializable {
 	@SerializedName("selective")
 	private boolean selective;
 
-	public String getKeyboard() {
+	public List<List<String>> getKeyboard() {
 		return keyboard;
 	}
 
-	public void setKeyboard(String keyboard) {
+	public void setKeyboard(List<List<String>> keyboard) {
 		this.keyboard = keyboard;
 	}
 

@@ -32,8 +32,6 @@ public class SendMessageRequest implements Serializable {
 	@SerializedName("reply_markup")
 	private ReplyKeyboardMarkup replyKeyboardMarkup;
 
-	// TODO : explore reply_markup in this object. View Telegram API docs.
-
 	public Integer getChatId() {
 		return chatId;
 	}
