@@ -3,6 +3,7 @@ package org.javaleo.libs.botgram.request;
 import java.io.Serializable;
 
 import org.javaleo.libs.botgram.enums.ParseMode;
+import org.javaleo.libs.botgram.model.BasicKeyboard;
 import org.javaleo.libs.botgram.model.ReplyKeyboardMarkup;
 
 import com.google.gson.annotations.Expose;
@@ -30,7 +31,7 @@ public class SendMessageRequest implements Serializable {
 
 	@Expose
 	@SerializedName("reply_markup")
-	private ReplyKeyboardMarkup replyKeyboardMarkup;
+	private BasicKeyboard keyboard;
 
 	public Integer getChatId() {
 		return chatId;
@@ -64,12 +65,12 @@ public class SendMessageRequest implements Serializable {
 		this.disableWebPagePreview = disableWebPagePreview;
 	}
 
-	public ReplyKeyboardMarkup getReplyKeyboardMarkup() {
-		return replyKeyboardMarkup;
+	public BasicKeyboard getKeyboard() {
+		return keyboard;
 	}
 
-	public void setReplyKeyboardMarkup(ReplyKeyboardMarkup replyKeyboardMarkup) {
-		this.replyKeyboardMarkup = replyKeyboardMarkup;
+	public void setKeyboard(BasicKeyboard keyboard) {
+		this.keyboard = keyboard;
 	}
 
 }

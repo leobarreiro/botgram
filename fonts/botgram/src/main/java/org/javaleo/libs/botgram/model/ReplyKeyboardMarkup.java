@@ -1,12 +1,11 @@
 package org.javaleo.libs.botgram.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ReplyKeyboardMarkup implements Serializable {
+public class ReplyKeyboardMarkup extends BasicKeyboard {
 
 	private static final long serialVersionUID = 1L;
 
@@ -17,7 +16,7 @@ public class ReplyKeyboardMarkup implements Serializable {
 	@Expose
 	@SerializedName("resize_keyboard")
 	private boolean resizeKeyboard;
-
+	
 	@Expose
 	@SerializedName("one_time_keyboard")
 	private boolean oneTimeKeyboard;
