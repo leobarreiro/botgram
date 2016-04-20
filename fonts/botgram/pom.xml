@@ -6,7 +6,7 @@
 	<artifactId>botgram</artifactId>
 	<packaging>jar</packaging>
 	<name>BotGram Utils</name>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<url>http://botgram.javaleo.org</url>
 	<licenses>
 		<license>

@@ -4,7 +4,7 @@
   <groupId>org.javaleo.libs</groupId>
   <artifactId>botgram</artifactId>
   <name>BotGram Utils</name>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
   <url>http://botgram.javaleo.org</url>
   <licenses>
     <license>
