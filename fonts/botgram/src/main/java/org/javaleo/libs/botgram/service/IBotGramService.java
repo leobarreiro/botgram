@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import org.javaleo.libs.botgram.exceptions.BotGramException;
 import org.javaleo.libs.botgram.model.Document;
+import org.javaleo.libs.botgram.model.TelegramFile;
 import org.javaleo.libs.botgram.request.SendDocumentRequest;
 import org.javaleo.libs.botgram.request.SendMessageRequest;
+import org.javaleo.libs.botgram.response.GetFileResponse;
 import org.javaleo.libs.botgram.response.GetMeResponse;
 import org.javaleo.libs.botgram.response.GetUpdatesResponse;
 import org.javaleo.libs.botgram.response.SendDocumentResponse;
@@ -21,7 +23,9 @@ public interface IBotGramService extends Serializable {
 
 	SendMessageResponse sendMessage(SendMessageRequest request) throws BotGramException;
 
-	Document getFile(String fileId) throws BotGramException;
+	GetFileResponse getFile(String fileId) throws BotGramException;
+	
+	String getFileUrlDownload(String fileId) throws BotGramException;
 
 	SendDocumentResponse sendDocument(SendDocumentRequest request) throws BotGramException;
 

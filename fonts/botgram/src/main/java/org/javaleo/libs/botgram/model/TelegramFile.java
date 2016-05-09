@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PhotoSize implements Serializable {
+public class TelegramFile implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -14,16 +14,12 @@ public class PhotoSize implements Serializable {
 	private String id;
 
 	@Expose
-	@SerializedName("width")
-	private Integer width;
-
-	@Expose
-	@SerializedName("height")
-	private Integer height;
-
-	@Expose
 	@SerializedName("file_size")
 	private Integer size;
+
+	@Expose
+	@SerializedName("file_path")
+	private String path;
 
 	public String getId() {
 		return id;
@@ -33,28 +29,20 @@ public class PhotoSize implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getWidth() {
-		return width;
-	}
-
-	public void setWidth(Integer width) {
-		this.width = width;
-	}
-
-	public Integer getHeight() {
-		return height;
-	}
-
-	public void setHeight(Integer height) {
-		this.height = height;
-	}
-
 	public Integer getSize() {
 		return size;
 	}
 
 	public void setSize(Integer size) {
 		this.size = size;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 }

@@ -20,9 +20,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.javaleo.libs.botgram.exceptions.BotGramException;
 import org.javaleo.libs.botgram.model.BotGramHttpResponse;
-import org.javaleo.libs.botgram.model.Document;
+import org.javaleo.libs.botgram.model.TelegramFile;
 import org.javaleo.libs.botgram.request.SendDocumentRequest;
 import org.javaleo.libs.botgram.request.SendMessageRequest;
+import org.javaleo.libs.botgram.response.GetFileResponse;
 import org.javaleo.libs.botgram.response.GetMeResponse;
 import org.javaleo.libs.botgram.response.GetUpdatesResponse;
 import org.javaleo.libs.botgram.response.SendDocumentResponse;
@@ -142,8 +143,21 @@ public class BotGramService implements IBotGramService {
 	}
 
 	@Override
-	public Document getFile(String fileId) throws BotGramException {
-		return null;
+	public GetFileResponse getFile(String fileId) throws BotGramException {
+		BotGramHttpResponse response;
+		try {
+			response = executeGetRequest(botGramConfig.getFileUrl(fileId));
+			Gson gson = createGson();
+			GetFileResponse pojo = gson.fromJson(response.getContent(), GetFileResponse.class);
+			return pojo;
+		} catch (IOException e) {
+			throw new BotGramException(e.getMessage(), e);
+		}
+	}
+	
+	@Override
+	public String getFileUrlDownload(String fileId) throws BotGramException {
+		return botGramConfig.getUrlDownloadFile(fileId);
 	}
 
 	private Gson createGson() {

@@ -1,5 +1,6 @@
 package org.javaleo.libs.botgram.service;
 
+import java.text.MessageFormat;
 import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,7 @@ public class BotGramConfig implements IBotGramConfig {
 	private static final String GETUPDATES = "getUpdates";
 	private static final String SENDMESSAGE = "sendMessage";
 	private static final String SENDDOCUMENT = "sendDocument";
+	private static final String GETFILE = "getFile";
 
 	private Properties properties;
 
@@ -53,13 +55,30 @@ public class BotGramConfig implements IBotGramConfig {
 		str.append(SENDDOCUMENT);
 		return str.toString();
 	}
+	
+	@Override
+	public String getFileUrl(String fileId) {
+		properties = BotGramProducer.loadProperties();
+		StringBuilder str = getApiUrl();
+		str.append("getFile");
+		str.append("?file_id=");
+		str.append(fileId);
+		return str.toString();
+	}
+	
+	@Override
+	public String getUrlDownloadFile(String fileId) {
+		properties = BotGramProducer.loadProperties();
+		String url = properties.getProperty("telegram.file.url");
+		return MessageFormat.format(url, this.token, fileId);
+	}
 
 	private StringBuilder getApiUrl() {
 		properties = BotGramProducer.loadProperties();
 		String url = properties.getProperty("telegram.url");
-		StringBuilder str = new StringBuilder(StringUtils.replace(url,
-				"<token>", this.token));
+		StringBuilder str = new StringBuilder(MessageFormat.format(url, this.token));
 		return str;
 	}
+	
 
 }

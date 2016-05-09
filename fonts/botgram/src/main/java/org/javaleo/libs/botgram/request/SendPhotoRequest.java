@@ -7,7 +7,7 @@ import org.javaleo.libs.botgram.model.BasicKeyboard;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SendDocumentRequest implements Serializable {
+public class SendPhotoRequest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,7 +16,7 @@ public class SendDocumentRequest implements Serializable {
 	private Integer chatId;
 
 	@Expose
-	@SerializedName("document")
+	@SerializedName("photo")
 	private String fileName;
 
 	@Expose

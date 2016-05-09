@@ -1,6 +1,7 @@
 package org.javaleo.libs.botgram.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -46,6 +47,10 @@ public class Message implements Serializable {
 	private Document document;
 
 	@Expose
+	@SerializedName("photo")
+	private List<PhotoSize> photosizes;
+
+	@Expose
 	@SerializedName("contact")
 	private Contact contact;
 
@@ -76,7 +81,7 @@ public class Message implements Serializable {
 	public void setDate(Integer date) {
 		this.date = date;
 	}
-	
+
 	public Chat getChat() {
 		return chat;
 	}
@@ -123,6 +128,14 @@ public class Message implements Serializable {
 
 	public void setDocument(Document document) {
 		this.document = document;
+	}
+
+	public List<PhotoSize> getPhotosizes() {
+		return photosizes;
+	}
+
+	public void setPhotosizes(List<PhotoSize> photosizes) {
+		this.photosizes = photosizes;
 	}
 
 	public Contact getContact() {
