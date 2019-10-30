@@ -47,6 +47,34 @@ public class Chat implements Serializable {
 	@SerializedName("last_name")
 	private String lastName;
 
+	@Expose
+	@SerializedName("photo")
+	private ChatPhoto photo;
+
+	@Expose
+	@SerializedName("description")
+	private String description;
+
+	@Expose
+	@SerializedName("invite_link")
+	private String inviteLink;
+
+	@Expose
+	@SerializedName("pinned_message")
+	private Message pinnedMessage;
+
+	@Expose
+	@SerializedName("chatPermissions")
+	private ChatPermissions chatPermissions;
+
+	@Expose
+	@SerializedName("sticker_set_name")
+	private String stickerSetName;
+
+	@Expose
+	@SerializedName("can_set_sticker_set")
+	private Boolean canStickerSet;
+
 	private List<Message> messages;
 
 }

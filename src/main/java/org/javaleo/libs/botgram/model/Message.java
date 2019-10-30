@@ -18,7 +18,8 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id", "from", "date", "chat", "text"})
+@EqualsAndHashCode(
+		of = { "id", "from", "date", "chat", "text" })
 public class Message implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -52,12 +53,32 @@ public class Message implements Serializable {
 	private Message replyMessage;
 
 	@Expose
+	@SerializedName("author_signature")
+	private String authorSignature;
+
+	@Expose
 	@SerializedName("text")
 	private String text;
 
 	@Expose
+	@SerializedName("entities")
+	private List<MessageEntity> entities;
+
+	@Expose
+	@SerializedName("caption_entities")
+	private List<MessageEntity> captionEntities;
+
+	@Expose
+	@SerializedName("audio")
+	private Audio audio;
+
+	@Expose
 	@SerializedName("document")
 	private Document document;
+
+	@Expose
+	@SerializedName("animation")
+	private Animation animation;
 
 	@Expose
 	@SerializedName("photo")
@@ -70,5 +91,9 @@ public class Message implements Serializable {
 	@Expose
 	@SerializedName("location")
 	private Location location;
+
+	@Expose
+	@SerializedName("poll")
+	private Poll poll;
 
 }

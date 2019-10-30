@@ -38,4 +38,8 @@ public class Contact implements Serializable {
 	@SerializedName("user_id")
 	private Integer userId;
 
+	@Expose
+	@SerializedName("vcard")
+	private String vcard;
+
 }

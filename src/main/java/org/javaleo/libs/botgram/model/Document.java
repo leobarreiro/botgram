@@ -27,6 +27,10 @@ public class Document implements Serializable {
 	private String id;
 
 	@Expose
+	@SerializedName("thumb")
+	private PhotoSize thumb;
+
+	@Expose
 	@SerializedName("file_name")
 	private String name;
 

@@ -27,6 +27,10 @@ public class User implements Serializable {
 	private Integer id;
 
 	@Expose
+	@SerializedName("is_bot")
+	private Boolean isBot;
+
+	@Expose
 	@SerializedName("first_name")
 	private String firstName;
 
@@ -37,5 +41,9 @@ public class User implements Serializable {
 	@Expose
 	@SerializedName("username")
 	private String username;
+
+	@Expose
+	@SerializedName("language_code")
+	private String languageCode;
 
 }
